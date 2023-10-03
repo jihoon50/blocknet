@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.web3j.crypto.ECKeyPair;
+import org.web3j.crypto.Keys;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.methods.response.EthGetBalance;
 import org.web3j.protocol.http.HttpService;
@@ -14,18 +16,18 @@ import java.io.IOException;
 import java.math.BigDecimal;
 
 @RestController
-@RequestMapping("/api/gana")
-public class GanaBalanceController {
+@RequestMapping("/api/ether")
+public class EtherBalanceController {
 
-    private final Web3j web3j = Web3j.build(new HttpService("https://mainnet.infura.io/v3/21fe937c5dd94d52b4b3954992cfd18c")); // 가나슈 URL로 대체
+    private final Web3j web3j = Web3j.build(new HttpService("http://59.22.114.140:8545"));
 
 
     @GetMapping("/balance")
     public String getBalance(
-            @RequestParam String ganaaddr
+            @RequestParam String privateKey
     ) {
-        String address = ganaaddr; // 가나슈 계정 주소
-
+        ECKeyPair ecKeyPair = ECKeyPair.create(Numeric.toBigInt(privateKey));
+        String address = Keys.getAddress(ecKeyPair);
         try {
             EthGetBalance balanceResponse = web3j.ethGetBalance(address, null).send();
             BigDecimal weiBalance = new BigDecimal(balanceResponse.getBalance());
