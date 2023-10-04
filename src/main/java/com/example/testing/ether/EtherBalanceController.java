@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.web3j.crypto.ECKeyPair;
 import org.web3j.crypto.Keys;
 import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.methods.response.EthGetBalance;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.utils.Convert;
@@ -14,6 +15,7 @@ import org.web3j.utils.Numeric;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @RestController
 @RequestMapping("/api/ether")
@@ -24,15 +26,16 @@ public class EtherBalanceController {
 
     @GetMapping("/balance")
     public String getBalance(
-            @RequestParam String privateKey
+            @RequestParam String publicKey
+            //@RequestParam String privateKey
     ) {
-        ECKeyPair ecKeyPair = ECKeyPair.create(Numeric.toBigInt(privateKey));
-        String address = Keys.getAddress(ecKeyPair);
-        try {
-            EthGetBalance balanceResponse = web3j.ethGetBalance(address, null).send();
-            BigDecimal weiBalance = new BigDecimal(balanceResponse.getBalance());
-            BigDecimal etherBalance = Convert.fromWei(weiBalance, Convert.Unit.ETHER);
-            return etherBalance.toPlainString() + " ETH";
+        //ECKeyPair ecKeyPair = ECKeyPair.create(Numeric.toBigInt(privateKey));
+        //String address = Keys.getAddress(ecKeyPair);
+        String address =  publicKey;
+        try{
+            BigInteger weiBalance = web3j.ethGetBalance(address, DefaultBlockParameterName.LATEST).send().getBalance();
+            BigDecimal etherBalance = Convert.fromWei(weiBalance.toString(),Convert.Unit.ETHER);
+            return etherBalance.toPlainString() + "ETH";
         } catch (IOException e) {
             e.printStackTrace();
             return "Error fetching balance";
