@@ -22,7 +22,7 @@ public class TrackingService {
                 .path("/api/v1/trackingInfo")
                 .queryParam("t_code", t_code)
                 .queryParam("t_invoice",t_invoice)
-                .queryParam("t_key","ZqDo9Sewx3as3SqDUOynUw") // 09/23 key expiration
+                .queryParam("t_key","DvjPwRW2gMPfap6GUq2Dtw") // 11/06 key expiration
                 .encode()
                 .build()
                 .toUri();
