@@ -59,7 +59,7 @@ public class PostController {
     }
 
 
-    @GetMapping("/post")
+    @PostMapping("/post")
     public void itemPost(
            // @RequestParam String userId
            @ModelAttribute PostItemModel item

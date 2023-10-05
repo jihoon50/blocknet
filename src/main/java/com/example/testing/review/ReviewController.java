@@ -60,7 +60,7 @@ public class ReviewController {
     }
 
 
-    @GetMapping("/post")
+    @PostMapping("/post")
     public void reviewPost(
             // @RequestParam String userId
             @ModelAttribute ReviewModel review
