@@ -23,9 +23,9 @@ public class PostController {
 
     ObjectMapper objectMapper = new ObjectMapper();
 
-    Credentials credentials = Credentials.create("0xe205dd10b54895add4dbbb85044e0be45ef16da906f4fd158ac2d6cc3eafe2d4");
+    Credentials credentials = Credentials.create("0x11c8218a6627c73c69206f828cefb64d5a7cbaf1dc6d0aaede3f9aff02e44635");
     //개인키 첫번째거 고정
-    PostContract contract = PostContract.load("0x0619991781F287cE3d026fE19244549B2d3f768C",web3j,credentials, Contract.GAS_PRICE,Contract.GAS_LIMIT);
+    PostContract contract = PostContract.load("0x64bdA0423000fcB76B444c26F625c2f1AcfEbA66",web3j,credentials, Contract.GAS_PRICE,Contract.GAS_LIMIT);
     //스마트 컨트랙트 주소
 
 

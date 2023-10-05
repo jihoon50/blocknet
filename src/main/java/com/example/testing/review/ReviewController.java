@@ -22,9 +22,9 @@ public class ReviewController {
     private final Web3j web3j = Web3j.build(new HttpService("http://59.22.114.140:8545"));
 
 
-    Credentials credentials = Credentials.create("0xe205dd10b54895add4dbbb85044e0be45ef16da906f4fd158ac2d6cc3eafe2d4");
+    Credentials credentials = Credentials.create("0x11c8218a6627c73c69206f828cefb64d5a7cbaf1dc6d0aaede3f9aff02e44635");
     //개인키 첫번째거 고정
-    ReviewContract contract = ReviewContract.load("0x679657b596f2322FB86Af42d817C707f0BAec27F",web3j,credentials, Contract.GAS_PRICE,Contract.GAS_LIMIT);
+    ReviewContract contract = ReviewContract.load("0x15d359F3AA90abcbb1e36A5284Edf96163CAfB53",web3j,credentials, Contract.GAS_PRICE,Contract.GAS_LIMIT);
     //스마트 컨트랙트 주소
 
 
