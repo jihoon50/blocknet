@@ -2,6 +2,7 @@ package com.example.testing.post;
 
 
 import com.example.testing.post.model.PostItemModel;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
@@ -20,10 +21,11 @@ public class PostController {
 
     private final Web3j web3j = Web3j.build(new HttpService("http://59.22.114.140:8545"));
 
+    ObjectMapper objectMapper = new ObjectMapper();
 
-    Credentials credentials = Credentials.create("0x59bf212227cb07c223b6534f3cac08df5638c0cf6e18864bf3d1d2c9e7cd7d57");
+    Credentials credentials = Credentials.create("0xe205dd10b54895add4dbbb85044e0be45ef16da906f4fd158ac2d6cc3eafe2d4");
     //개인키 첫번째거 고정
-    PostContract contract = PostContract.load("0x8a600EE824cC32ad4D977c406DBE1cfcBd88eD28",web3j,credentials, Contract.GAS_PRICE,Contract.GAS_LIMIT);
+    PostContract contract = PostContract.load("0x0619991781F287cE3d026fE19244549B2d3f768C",web3j,credentials, Contract.GAS_PRICE,Contract.GAS_LIMIT);
     //스마트 컨트랙트 주소
 
 
@@ -40,16 +42,17 @@ public class PostController {
             List<PostContract.Post> postList = resultList.component1();
             //Tuple 에서 post List만 추출
 
-//            for (PostContract.Post post : postList) {
-//                // post를 사용하여 원하는 작업을 수행
-//                // post.postId 처럼 각각 요소 접근
-//            }
+            for (PostContract.Post post : postList) {
+                // post를 사용하여 원하는 작업을 수행
+                // post.postId 처럼 각각 요소 접근
+
+            }
 
             //postList.get(0) 사용시 게시글 배열의 0번째 게시글 접근
 
             BigInteger postNum = resultList.component2();
             //반환된 post 개수
-
+            System.out.println();
             //return postList.get(0).postId.toString();
 
             return postList;

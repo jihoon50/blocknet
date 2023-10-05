@@ -17,8 +17,8 @@ public class PostItemModel {
     private String userNickname;
     private String userPhone;
     private String postId;
-    private List<String> postImageUrl;
-    //private String postImageUrl;
+    //private List<String> postImageUrl;
+    private String postImageUrl;
     private String postTitle;
     private String postPrice;
     private String postContent;
