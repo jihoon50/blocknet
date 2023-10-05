@@ -62,7 +62,8 @@ public class PostController {
     @PostMapping("/post")
     public void itemPost(
            // @RequestParam String userId
-           @ModelAttribute PostItemModel item
+           //@ModelAttribute PostItemModel item
+           @RequestBody PostItemModel item
     ) {
         try {
             //게시글 저장할때 전부 String인데 마지막 시간은 BigInteger로 바꿔서 입력

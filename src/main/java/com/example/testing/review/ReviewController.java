@@ -63,7 +63,8 @@ public class ReviewController {
     @PostMapping("/post")
     public void reviewPost(
             // @RequestParam String userId
-            @ModelAttribute ReviewModel review
+            //@ModelAttribute ReviewModel review
+            @RequestBody ReviewModel review
     ) {
         try {
             //게시글 저장할때 전부 String인데 마지막 시간은 BigInteger로 바꿔서 입력
