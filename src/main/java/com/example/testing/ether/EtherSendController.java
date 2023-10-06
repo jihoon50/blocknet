@@ -1,5 +1,6 @@
 package com.example.testing.ether;
 
+import com.example.testing.ether.model.EtherSendModel;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
@@ -29,13 +30,15 @@ public class EtherSendController {
 
     @PostMapping("/send")
     public String getBalance(
-            @RequestParam String receiverPrivateKey,
-            @RequestParam  String senderPrivateKey,
-            @RequestParam double money
-    ) {
-        Credentials credentials = Credentials.create(senderPrivateKey);
-        BigDecimal amount = BigDecimal.valueOf(money);
-        ECKeyPair ecKeyPair = ECKeyPair.create(Numeric.toBigInt(receiverPrivateKey));
+            @RequestBody EtherSendModel model
+
+            ) {
+        //Credentials credentials = Credentials.create(model.getSenderPrivateKey());
+        Credentials credentials = Credentials.create(model.getSenderPrivateKey());
+        //BigDecimal amount = BigDecimal.valueOf(model.getMoney());
+        BigDecimal amount = BigDecimal.valueOf(model.getMoney());
+        //ECKeyPair ecKeyPair = ECKeyPair.create(Numeric.toBigInt(model.getReceiverPrivateKey()));
+        ECKeyPair ecKeyPair = ECKeyPair.create(Numeric.toBigInt(model.getReceiverPrivateKey()));
         String walletAddress = Keys.getAddress(ecKeyPair);
         try {
             Transfer.sendFunds(

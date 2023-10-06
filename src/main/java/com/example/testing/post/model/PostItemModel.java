@@ -22,6 +22,6 @@ public class PostItemModel {
     private String postTitle;
     private String postPrice;
     private String postContent;
-    private Long createAt;
+    private Long createdAt;
 
 }
