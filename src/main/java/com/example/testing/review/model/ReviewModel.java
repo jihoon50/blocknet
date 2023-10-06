@@ -15,7 +15,7 @@ public class ReviewModel {
     private String reviewId;
     private String reviewStar;
     private String reviewText;
-    private String writerNickName;
-    private Long createAt;
+    private String writerNickname;
+    private Long createdAt;
 
 }

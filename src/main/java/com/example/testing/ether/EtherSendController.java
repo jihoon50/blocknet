@@ -2,11 +2,8 @@ package com.example.testing.ether;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.web3j.crypto.Credentials;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.web3j.crypto.ECKeyPair;
 import org.web3j.crypto.Keys;
 import org.web3j.protocol.Web3j;
@@ -30,7 +27,7 @@ public class EtherSendController {
 
 
 
-    @GetMapping("/send")
+    @PostMapping("/send")
     public String getBalance(
             @RequestParam String receiverPrivateKey,
             @RequestParam  String senderPrivateKey,

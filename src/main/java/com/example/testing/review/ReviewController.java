@@ -68,7 +68,7 @@ public class ReviewController {
     ) {
         try {
             //게시글 저장할때 전부 String인데 마지막 시간은 BigInteger로 바꿔서 입력
-            BigInteger createAt = BigInteger.valueOf(review.getCreateAt());
+            BigInteger createAt = BigInteger.valueOf(review.getCreatedAt());
 
             //게시글 블록체인에 저장하는 함수
             TransactionReceipt transactionReceipt = contract.createReview(
@@ -76,7 +76,7 @@ public class ReviewController {
                             review.getReviewId(),
                             review.getReviewStar(),
                             review.getReviewText(),
-                            review.getWriterNickName(),
+                            review.getWriterNickname(),
                             createAt
                     )
                     .send();

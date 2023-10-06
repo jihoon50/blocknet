@@ -25,7 +25,7 @@ public class PostController {
 
     Credentials credentials = Credentials.create("0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d");
     //개인키 첫번째거 고정
-    PostContract contract = PostContract.load("0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab",web3j,credentials, Contract.GAS_PRICE,Contract.GAS_LIMIT);
+    PostContract contract = PostContract.load("0x254dffcd3277C0b1660F6d42EFbB754edaBAbC2B",web3j,credentials, Contract.GAS_PRICE,Contract.GAS_LIMIT);
     //스마트 컨트랙트 주소
 
 
