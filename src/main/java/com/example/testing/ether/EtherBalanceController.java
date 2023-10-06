@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.web3j.crypto.Credentials;
 import org.web3j.crypto.ECKeyPair;
 import org.web3j.crypto.Keys;
 import org.web3j.protocol.Web3j;
@@ -26,19 +27,24 @@ public class EtherBalanceController {
 
     @GetMapping("/balance")
     public String getBalance(
-            @RequestParam String publicKey
-            //@RequestParam String privateKey
+            @RequestParam String privateKey
+
     ) {
-        //ECKeyPair ecKeyPair = ECKeyPair.create(Numeric.toBigInt(privateKey));
-        //String address = Keys.getAddress(ecKeyPair);
-        String address =  publicKey;
-        try{
-            BigInteger weiBalance = web3j.ethGetBalance(address, DefaultBlockParameterName.LATEST).send().getBalance();
-            BigDecimal etherBalance = Convert.fromWei(weiBalance.toString(),Convert.Unit.ETHER);
-            return etherBalance.toPlainString() + "ETH";
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "Error fetching balance";
+        try {
+
+            Credentials credentials = Credentials.create(privateKey);
+
+            String address = credentials.getAddress();
+
+            EthGetBalance balance = web3j.ethGetBalance(address, DefaultBlockParameterName.LATEST).send();
+            BigInteger weiBalance = balance.getBalance();
+
+            BigDecimal etherBalance = Convert.fromWei(new BigDecimal(weiBalance), Convert.Unit.ETHER);
+
+            return etherBalance.toString() + "ETH";
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+
     }
 }
