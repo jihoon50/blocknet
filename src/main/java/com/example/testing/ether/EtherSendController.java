@@ -21,7 +21,7 @@ import java.math.BigInteger;
 @RestController
 @RequestMapping("api/ether")
 public class EtherSendController {
-    private final Web3j web3j = Web3j.build(new HttpService("http://175.214.211.106:8545"));
+    private final Web3j web3j = Web3j.build(new HttpService("http://61.79.41.171:8545"));
     //"0xD0aaF45E1d7620A82361F11dd90863be6e31ff69"; 받는사람 공개키
     //"0xb6bd3ded7da77579513e72437885f8aa16ad04abece2c3364e85fec8ee45862a" 받는사람 개인키
     //"0x5de79ea10caeae961f1a6f13efa4ac5912faa8149b1ba057f7c7b118e284fcf3" 보내는사람 개인키
