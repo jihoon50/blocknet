@@ -19,9 +19,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("open-api/rest")
 @Slf4j
 public class RestApiController {
-
     private final TrackingService trackingService;
 
+    @GetMapping("/tracking/state")
+    public String currentState(
+            @RequestParam String t_code,
+            @RequestParam String t_invoice
+
+    ){
+        var response = trackingService.getTrackingInfo(t_code, t_invoice);
+        var resBody = response.getBody();
+        JsonObject jsonObject = new JsonParser().parse(resBody).getAsJsonObject();
+        var curTrackingState = jsonObject
+                .getAsJsonObject("lastStateDetail")
+                .get("kind")
+                .getAsString();
+        System.out.println(curTrackingState);
+        return curTrackingState;
+
+    }
     @GetMapping("/tracking")
     public ResponseEntity<String> tracking(
             @RequestParam String t_code,
@@ -33,30 +49,6 @@ public class RestApiController {
 
     }
 
-    @GetMapping("/tracking/state")
-    public String currentState(
-            @RequestParam String t_code,
-            @RequestParam String t_invoice
-
-    ){
-        var response = trackingService.getTrackingInfo(t_code, t_invoice);
-
-        var resBody = response.getBody();
-
-        JsonObject jsonObject = new JsonParser().parse(resBody).getAsJsonObject();
-
-        var curTrackingState = jsonObject
-                .getAsJsonObject("lastStateDetail")
-                .get("kind")
-                .getAsString();
-
-        System.out.println(curTrackingState);
-
-        return curTrackingState;
-
-
-
-    }
 
 
 

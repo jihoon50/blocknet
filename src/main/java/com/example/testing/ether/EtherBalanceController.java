@@ -22,25 +22,19 @@ import java.math.BigInteger;
 @RequestMapping("/api/ether")
 public class EtherBalanceController {
 
-    private final Web3j web3j = Web3j.build(new HttpService("http://61.79.41.171:8545"));
+    private final Web3j web3j = Web3j.build(new HttpService("http://211.197.60.152:8545"));
 
 
     @GetMapping("/balance")
     public String getBalance(
             @RequestParam String privateKey
-
     ) {
         try {
-
             Credentials credentials = Credentials.create(privateKey);
-
             String address = credentials.getAddress();
-
             EthGetBalance balance = web3j.ethGetBalance(address, DefaultBlockParameterName.LATEST).send();
             BigInteger weiBalance = balance.getBalance();
-
             BigDecimal etherBalance = Convert.fromWei(new BigDecimal(weiBalance), Convert.Unit.ETHER);
-
             return etherBalance.toString() + "ETH";
         } catch (Exception e) {
             throw new RuntimeException(e);
