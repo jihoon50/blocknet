@@ -22,7 +22,7 @@ import java.math.BigInteger;
 @RequestMapping("/api/ether")
 public class EtherBalanceController {
 
-    private final Web3j web3j = Web3j.build(new HttpService("http://211.197.60.152:8545"));
+    private final Web3j web3j = Web3j.build(new HttpService("http://59.19.195.146"));
 
 
     @GetMapping("/balance")
