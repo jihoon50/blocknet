@@ -19,7 +19,7 @@ import org.web3j.crypto.Credentials;
 
 public class ReviewController {
 
-    private final Web3j web3j = Web3j.build(new HttpService("http://59.19.195.146"));
+    private final Web3j web3j = Web3j.build(new HttpService("http://59.19.195.146:8545"));
 
 
     Credentials credentials = Credentials.create("0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d");

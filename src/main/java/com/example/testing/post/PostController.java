@@ -17,7 +17,7 @@ import org.web3j.crypto.Credentials;
 @RestController
 @RequestMapping("/api/item")
 public class PostController {
-    private final Web3j web3j = Web3j.build(new HttpService("http://59.19.195.146"));
+    private final Web3j web3j = Web3j.build(new HttpService("http://59.19.195.146:8545"));
     Credentials credentials = Credentials.create("0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d");
     PostContract contract = PostContract.load("0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab", web3j, credentials, Contract.GAS_PRICE, Contract.GAS_LIMIT);
     @PostMapping("/post")
